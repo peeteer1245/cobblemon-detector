@@ -1,4 +1,3 @@
-
 // THIS IS A GENERATED FILE
 // CONTAINS POKEMON-NAMES THAT MIGHT NOT BE IN COBBLEMON
 //
@@ -49,27 +48,27 @@ public class PokemonLists {
         "xerneas",
         "yveltal",
         "zygarde",
-        "silvally",
         "tapu-koko",
         "tapu-lele",
         "tapu-bulu",
         "tapu-fini",
         "cosmog",
+        "necrozma",
+        "silvally",
         "cosmoem",
         "solgaleo",
         "lunala",
-        "necrozma",
         "zacian",
         "zamazenta",
         "eternatus",
         "kubfu",
-        "urshifu",
         "regieleki",
         "regidrago",
         "glastrier",
         "spectrier",
         "calyrex",
         "enamorus",
+        "urshifu",
         "wo-chien",
         "chien-pao",
         "ting-lu",
@@ -202,5 +201,28 @@ public class PokemonLists {
         "charizard-gmax",
         "cinderace-gmax",
         "typhlosion-hisui",
+    };
+
+    // all baby pokemon without their evolutions
+    public static final String[] babies = {
+        "pichu",
+        "cleffa",
+        "igglybuff",
+        "togepi",
+        "tyrogue",
+        "smoochum",
+        "elekid",
+        "magby",
+        "azurill",
+        "wynaut",
+        "budew",
+        "chingling",
+        "bonsly",
+        "mime-jr",
+        "happiny",
+        "munchlax",
+        "riolu",
+        "mantyke",
+        "toxel",
     };
 }

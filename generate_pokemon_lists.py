@@ -40,57 +40,68 @@ POKEMON_LIST_STARTER_FOOTER = """
     };
 """
 
+POKEMON_LIST_BABIES_HEADER = """
+    // all baby pokemon without their evolutions
+    public static final String[] babies = {
+"""
+POKEMON_LIST_BABIES_FOOTER = """
+    };
+"""
+
 POKEMON_LIST_FILE_FOOTER = """
 }
 """
 
 graphql_query = """
 query samplePokeAPIquery {
-    grass_starter: pokemon_v2_ability(where: {name: {_eq: "overgrow"}}) {
+  legendaries: pokemon_v2_pokemonspecies(where: {is_legendary: {_eq: true}}) {
+    name
+  }
+  mythics: pokemon_v2_pokemonspecies(where: {is_mythical: {_eq: true}}) {
+    name
+  }
+  grass_starter: pokemon_v2_ability(where: {name: {_eq: "overgrow"}}) {
+    name
+    id
+    pokemon_v2_pokemonabilities {
+      pokemon_v2_pokemon {
         name
-        id
         pokemon_v2_pokemonabilities {
-        pokemon_v2_pokemon {
-            name
-            pokemon_v2_pokemonabilities {
-            is_hidden
-            ability_id
-            }
+          is_hidden
+          ability_id
         }
-        }
+      }
     }
-    water_starter: pokemon_v2_ability(where: {name: {_eq: "torrent"}}) {
+  }
+  fire_starter: pokemon_v2_ability(where: {name: {_eq: "blaze"}}) {
+    name
+    id
+    pokemon_v2_pokemonabilities {
+      pokemon_v2_pokemon {
         name
-        id
         pokemon_v2_pokemonabilities {
-        pokemon_v2_pokemon {
-            name
-            pokemon_v2_pokemonabilities {
-            is_hidden
-            ability_id
-            }
+          is_hidden
+          ability_id
         }
-        }
+      }
     }
-    fire_starter: pokemon_v2_ability(where: {name: {_eq: "blaze"}}) {
+  }
+  water_starter: pokemon_v2_ability(where: {name: {_eq: "torrent"}}) {
+    name
+    id
+    pokemon_v2_pokemonabilities {
+      pokemon_v2_pokemon {
         name
-        id
         pokemon_v2_pokemonabilities {
-        pokemon_v2_pokemon {
-            name
-            pokemon_v2_pokemonabilities {
-            is_hidden
-            ability_id
-            }
+          is_hidden
+          ability_id
         }
-        }
+      }
     }
-    legendaries: pokemon_v2_pokemonspecies(where: {is_legendary: {_eq: true}}, order_by: {id: asc}) {
-        name
-    }
-    mythics: pokemon_v2_pokemonspecies(where: {is_mythical: {_eq: true}}, order_by: {id: asc}) {
-        name
-    }
+  }
+  babies: pokemon_v2_pokemonspecies(where: {is_baby: {_eq: true}}) {
+    name
+  }
 }
 """
 
@@ -135,11 +146,16 @@ for ability in starter_abilities:
             starters_text += f'        "{pokemon["name"]}",\n'
     pass
 
+babies = pokemondata["babies"]
+babies_text = ""
+for pokemon in babies:
+    babies_text += f'        "{pokemon["name"]}",\n'
+
 # array-slicing is used to remove leading and trailing newlines
 # [1:]  removes first char
 # [:-1] removes last  char
 pokemon_list_file_contents = ""
-pokemon_list_file_contents += POKEMON_LIST_FILE_HEADER
+pokemon_list_file_contents += POKEMON_LIST_FILE_HEADER[1:]
 pokemon_list_file_contents += POKEMON_LIST_LEGENDARY_HEADER
 pokemon_list_file_contents += legendaries_text[:-1]
 pokemon_list_file_contents += POKEMON_LIST_LEGENDARY_FOOTER
@@ -149,6 +165,9 @@ pokemon_list_file_contents += POKEMON_LIST_MYTHIC_FOOTER
 pokemon_list_file_contents += POKEMON_LIST_STARTER_HEADER
 pokemon_list_file_contents += starters_text[:-1]
 pokemon_list_file_contents += POKEMON_LIST_STARTER_FOOTER
+pokemon_list_file_contents += POKEMON_LIST_BABIES_HEADER
+pokemon_list_file_contents += babies_text[:-1]
+pokemon_list_file_contents += POKEMON_LIST_BABIES_FOOTER
 pokemon_list_file_contents += POKEMON_LIST_FILE_FOOTER[1:]
 
 POKEMON_LIST_JAVA_FILE.write_text(pokemon_list_file_contents)
