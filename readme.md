@@ -25,7 +25,6 @@ This is the default config file. It will be recreated when the file is not prese
 }
 ```
 
-
 For when you _only_ want your favorite Electric-types.
 ```json
 {
@@ -39,6 +38,17 @@ For when you _only_ want your favorite Electric-types.
     "shinx",
     "luxio",
     "luxray",
+  ]
+}
+```
+
+To disable all notifications.
+```json
+{
+  "broadcastAllLegendaries": false,
+  "broadcastAllMythics": false,
+  "broadcastAllStarter": false,
+  "broadcastAllowlist": [
   ]
 }
 ```
