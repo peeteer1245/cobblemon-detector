@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "cobblemondetector",
+  "version": "${version}",
+  "name": "CobblemonDetector",
+  "description": "",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/Colin/CobblemonDetector"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/cobblemondetector/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.peeteer.cobblemondetector.client.CobblemonDetectorClient"
+    ],
+    "main": [
+      "com.peeteer.cobblemondetector.CobblemonDetector"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}

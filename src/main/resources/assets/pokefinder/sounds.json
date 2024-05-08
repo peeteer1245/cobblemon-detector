@@ -1,0 +1,8 @@
+{
+    "pla_notification": {
+        "subtitle": "pokefinder.pokemonnotification",
+        "sounds": [
+            "pokefinder:pokemonnotification"
+        ]
+    }
+}
