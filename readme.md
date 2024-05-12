@@ -21,6 +21,7 @@ This is the default config file. It will be recreated when the file is not prese
   "broadcastAllMythics": true,
   "broadcastAllStarter": false,
   "broadcastAllBabies": false,
+  "broadcastAllUltraBeasts": false,
   "broadcastAllowlist": [
     "Mew",
     "Mewtwo"
@@ -35,6 +36,7 @@ For when you _only_ want your favorite Electric-types.
   "broadcastAllMythics": false,
   "broadcastAllStarter": false,
   "broadcastAllBabies": false,
+  "broadcastAllUltraBeasts": false,
   "broadcastAllowlist": [
     "Mareep",
     "Flaaffy",
@@ -53,6 +55,7 @@ To disable all notifications.
   "broadcastAllMythics": false,
   "broadcastAllStarter": false,
   "broadcastAllBabies": false,
+  "broadcastAllUltraBeasts": false,
   "broadcastAllowlist": [
   ]
 }

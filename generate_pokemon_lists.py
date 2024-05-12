@@ -48,6 +48,14 @@ POKEMON_LIST_BABIES_FOOTER = """
     };
 """
 
+POKEMON_LIST_BEASTS_HEADER = """
+    // all ultra-beasts
+    public static final String[] ultra_beasts = {
+"""
+POKEMON_LIST_BEASTS_FOOTER = """
+    };
+"""
+
 POKEMON_LIST_FILE_FOOTER = """
 }
 """
@@ -102,6 +110,15 @@ query samplePokeAPIquery {
   babies: pokemon_v2_pokemonspecies(where: {is_baby: {_eq: true}}) {
     name
   }
+  ultra_beasts: pokemon_v2_ability(where: {name: {_eq: "beast-boost"}}) {
+    name
+    id
+    pokemon_v2_pokemonabilities {
+      pokemon_v2_pokemon {
+        name
+      }
+    }
+  }
 }
 """
 
@@ -151,6 +168,14 @@ babies_text = ""
 for pokemon in babies:
     babies_text += f'        "{pokemon["name"]}",\n'
 
+beasts_text = ""
+for ability in pokemondata["ultra_beasts"]:
+    ability_id = ability["id"]
+    for pokemon in ability["pokemon_v2_pokemonabilities"]:
+        pokemon = pokemon["pokemon_v2_pokemon"]
+        # all ultra-beasts have the same ability "beast boost"
+        beasts_text += f'        "{pokemon["name"]}",\n'
+
 # array-slicing is used to remove leading and trailing newlines
 # [1:]  removes first char
 # [:-1] removes last  char
@@ -168,6 +193,9 @@ pokemon_list_file_contents += POKEMON_LIST_STARTER_FOOTER
 pokemon_list_file_contents += POKEMON_LIST_BABIES_HEADER
 pokemon_list_file_contents += babies_text[:-1]
 pokemon_list_file_contents += POKEMON_LIST_BABIES_FOOTER
+pokemon_list_file_contents += POKEMON_LIST_BEASTS_HEADER
+pokemon_list_file_contents += beasts_text[:-1]
+pokemon_list_file_contents += POKEMON_LIST_BEASTS_FOOTER
 pokemon_list_file_contents += POKEMON_LIST_FILE_FOOTER[1:]
 
 POKEMON_LIST_JAVA_FILE.write_text(pokemon_list_file_contents)

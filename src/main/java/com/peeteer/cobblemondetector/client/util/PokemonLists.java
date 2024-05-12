@@ -225,4 +225,19 @@ public class PokemonLists {
         "mantyke",
         "toxel",
     };
+
+    // all ultra-beasts
+    public static final String[] ultra_beasts = {
+        "nihilego",
+        "buzzwole",
+        "pheromosa",
+        "xurkitree",
+        "celesteela",
+        "kartana",
+        "guzzlord",
+        "poipole",
+        "naganadel",
+        "stakataka",
+        "blacephalon",
+    };
 }
