@@ -48,6 +48,7 @@ public class PokemonLists {
         "xerneas",
         "yveltal",
         "zygarde",
+        "type-null",
         "tapu-koko",
         "tapu-lele",
         "tapu-bulu",

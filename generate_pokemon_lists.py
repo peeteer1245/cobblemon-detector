@@ -62,59 +62,59 @@ POKEMON_LIST_FILE_FOOTER = """
 
 graphql_query = """
 query samplePokeAPIquery {
-  legendaries: pokemon_v2_pokemonspecies(where: {is_legendary: {_eq: true}}) {
+  legendaries: pokemonspecies(where: {is_legendary: {_eq: true}}) {
     name
   }
-  mythics: pokemon_v2_pokemonspecies(where: {is_mythical: {_eq: true}}) {
+  mythics: pokemonspecies(where: {is_mythical: {_eq: true}}) {
     name
   }
-  grass_starter: pokemon_v2_ability(where: {name: {_eq: "overgrow"}}) {
+  grass_starter: ability(where: {name: {_eq: "overgrow"}}) {
     name
     id
-    pokemon_v2_pokemonabilities {
-      pokemon_v2_pokemon {
+    pokemonabilities {
+      pokemon {
         name
-        pokemon_v2_pokemonabilities {
+        pokemonabilities {
           is_hidden
           ability_id
         }
       }
     }
   }
-  fire_starter: pokemon_v2_ability(where: {name: {_eq: "blaze"}}) {
+  fire_starter: ability(where: {name: {_eq: "blaze"}}) {
     name
     id
-    pokemon_v2_pokemonabilities {
-      pokemon_v2_pokemon {
+    pokemonabilities {
+      pokemon {
         name
-        pokemon_v2_pokemonabilities {
+        pokemonabilities {
           is_hidden
           ability_id
         }
       }
     }
   }
-  water_starter: pokemon_v2_ability(where: {name: {_eq: "torrent"}}) {
+  water_starter: ability(where: {name: {_eq: "torrent"}}) {
     name
     id
-    pokemon_v2_pokemonabilities {
-      pokemon_v2_pokemon {
+    pokemonabilities {
+      pokemon {
         name
-        pokemon_v2_pokemonabilities {
+        pokemonabilities {
           is_hidden
           ability_id
         }
       }
     }
   }
-  babies: pokemon_v2_pokemonspecies(where: {is_baby: {_eq: true}}) {
+  babies: pokemonspecies(where: {is_baby: {_eq: true}}) {
     name
   }
-  ultra_beasts: pokemon_v2_ability(where: {name: {_eq: "beast-boost"}}) {
+  ultra_beasts: ability(where: {name: {_eq: "beast-boost"}}) {
     name
     id
-    pokemon_v2_pokemonabilities {
-      pokemon_v2_pokemon {
+    pokemonabilities {
+      pokemon {
         name
       }
     }
@@ -127,7 +127,7 @@ graphql_headers = {
     "X-Method-Used": "graphiql"
 }
 
-response = requests.post("https://beta.pokeapi.co/graphql/v1beta", json={"query": graphql_query})
+response = requests.post("https://graphql.pokeapi.co/v1beta2", json={"query": graphql_query})
 pokemondata = response.json()["data"]
 
 
@@ -148,11 +148,11 @@ starters_text = ""
 for ability in starter_abilities:
     # data complexity go brrr
     starter_ability_id = ability["id"]
-    for pokemon in ability["pokemon_v2_pokemonabilities"]:
-        pokemon = pokemon["pokemon_v2_pokemon"]
+    for pokemon in ability["pokemonabilities"]:
+        pokemon = pokemon["pokemon"]
 
         is_starter = True
-        for _ability in pokemon["pokemon_v2_pokemonabilities"]:
+        for _ability in pokemon["pokemonabilities"]:
             # all starters of the same type have the same main ability (overgrow, torrent, blaze)
             # non-starters that also have such an ability have it as hidden-ability instead (6 total)
             if _ability["is_hidden"] and _ability["ability_id"] == starter_ability_id:
@@ -171,8 +171,8 @@ for pokemon in babies:
 beasts_text = ""
 for ability in pokemondata["ultra_beasts"]:
     ability_id = ability["id"]
-    for pokemon in ability["pokemon_v2_pokemonabilities"]:
-        pokemon = pokemon["pokemon_v2_pokemon"]
+    for pokemon in ability["pokemonabilities"]:
+        pokemon = pokemon["pokemon"]
         # all ultra-beasts have the same ability "beast boost"
         beasts_text += f'        "{pokemon["name"]}",\n'
 
