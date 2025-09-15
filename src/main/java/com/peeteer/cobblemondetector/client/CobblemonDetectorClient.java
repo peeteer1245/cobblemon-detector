@@ -24,8 +24,8 @@ public class CobblemonDetectorClient implements ClientModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
     public CobblemonDetectorConfig config = ConfigBuilder.make();
     public String[] allowList = config.getCombinedAllowlist();
-    
-    public final static Identifier NOTIFICATION_SOUND_ID = new Identifier(MOD_ID + ":pla_notification");
+
+    public static Identifier NOTIFICATION_SOUND_ID = Identifier.of(MOD_ID, "pla_notification");
     public final static SoundEvent NOTIFICATION_SOUND_EVENT = SoundEvent.of(NOTIFICATION_SOUND_ID);
 
     @Override
@@ -74,6 +74,6 @@ public class CobblemonDetectorClient implements ClientModInitializer {
     }
 
     public void playSoundNotification(PlayerEntity player){
-        player.playSound(NOTIFICATION_SOUND_EVENT, SoundCategory.NEUTRAL, 10f, 1f);
+        player.playSound(NOTIFICATION_SOUND_EVENT, 10f, 1f);
     }
 }
