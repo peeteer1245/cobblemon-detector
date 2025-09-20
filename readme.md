@@ -23,6 +23,7 @@ This is the default config file. It will be recreated when the file is not prese
   "broadcastAllBabies": false,
   "broadcastAllUltraBeasts": false,
   "broadcastAllShinies": true,
+  "broadcastAllParadox": false,
   "broadcastAllowlist": [
     "Mew",
     "Mewtwo"
@@ -39,6 +40,7 @@ For when you _only_ want your favorite Electric-types.
   "broadcastAllBabies": false,
   "broadcastAllUltraBeasts": false,
   "broadcastAllShinies": true,
+  "broadcastAllParadox": false,
   "broadcastAllowlist": [
     "Mareep",
     "Flaaffy",
@@ -59,6 +61,7 @@ To disable all notifications.
   "broadcastAllBabies": false,
   "broadcastAllUltraBeasts": false,
   "broadcastAllShinies": false,
+  "broadcastAllParadox": false,
   "broadcastAllowlist": [
   ]
 }
