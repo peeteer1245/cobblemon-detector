@@ -13,6 +13,7 @@ public class CobblemonDetectorConfig {
     public boolean broadcastAllBabies = false;
     public boolean broadcastAllUltraBeasts = false;
     public boolean broadcastAllShinies = true;
+    public boolean broadcastAllParadox = false;
     public String[] broadcastAllowlist = {"Mew", "Mewtwo"};
 
     public String[] getCombinedAllowlist(){
@@ -32,6 +33,9 @@ public class CobblemonDetectorConfig {
         }
         if (this.broadcastAllUltraBeasts) {
             combinedList.addAll(new ArrayList<String>(Arrays.asList(PokemonLists.ultra_beasts)));
+        }
+        if (this.broadcastAllParadox) {
+            combinedList.addAll(new ArrayList<String>(Arrays.asList(PokemonLists.paradox_mons)));
         }
 
         combinedList.addAll(new ArrayList<String>(Arrays.asList(this.broadcastAllowlist)));

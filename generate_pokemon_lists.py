@@ -56,6 +56,14 @@ POKEMON_LIST_BEASTS_FOOTER = """
     };
 """
 
+POKEMON_LIST_PARADOX_HEADER = """
+    // all paradox mons
+    public static final String[] paradox_mons = {
+"""
+POKEMON_LIST_PARADOX_FOOTER = """
+    };
+"""
+
 POKEMON_LIST_FILE_FOOTER = """
 }
 """
@@ -119,6 +127,26 @@ query samplePokeAPIquery {
       }
     }
   }
+  paradox_mon: ability(where: {
+    _or: [
+      {name:  {_eq: "protosynthesis"}},
+      {name:  {_eq: "quark-drive"}},
+      {name:  {_eq: "hadron-engine"}},
+      {name:  {_eq: "orichalcum-pulse"}}
+    ]
+  }) {
+    name
+    id
+    pokemonabilities {
+      pokemon {
+        name
+        pokemonabilities {
+          is_hidden
+          ability_id
+        }
+      }
+    }
+  }
 }
 """
 
@@ -165,7 +193,7 @@ for ability in starter_abilities:
                 break
 
         if is_starter:
-            starters_text += f'        "{pokemon["name"]}",\n'
+            starters_text += f'        "{name}",\n'
     pass
 
 babies = pokemondata["babies"]
@@ -180,6 +208,16 @@ for ability in pokemondata["ultra_beasts"]:
         pokemon = pokemon["pokemon"]
         # all ultra-beasts have the same ability "beast boost"
         beasts_text += f'        "{pokemon["name"]}",\n'
+
+paradox_text = ""
+for ability in pokemondata["paradox_mon"]:
+    for pokemon in ability["pokemonabilities"]:
+        name = pokemon["pokemon"]["name"].replace("-", "")
+        # miraidon and koraidon have needless name variants
+        if "build" in name or "mode" in name:
+            continue
+        paradox_text += f'        "{name}",\n'
+    pass
 
 # array-slicing is used to remove leading and trailing newlines
 # [1:]  removes first char
@@ -211,6 +249,12 @@ pokemon_list_file_contents += POKEMON_LIST_BABIES_FOOTER
 pokemon_list_file_contents += POKEMON_LIST_BEASTS_HEADER
 pokemon_list_file_contents += beasts_text[:-1]
 pokemon_list_file_contents += POKEMON_LIST_BEASTS_FOOTER
+
+# Paradox mons
+pokemon_list_file_contents += POKEMON_LIST_PARADOX_HEADER
+pokemon_list_file_contents += paradox_text[:-1]
+pokemon_list_file_contents += POKEMON_LIST_PARADOX_FOOTER
+
 pokemon_list_file_contents += POKEMON_LIST_FILE_FOOTER[1:]
 
 POKEMON_LIST_JAVA_FILE.write_text(pokemon_list_file_contents)

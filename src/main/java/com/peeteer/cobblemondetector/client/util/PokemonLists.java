@@ -232,4 +232,30 @@ public class PokemonLists {
         "stakataka",
         "blacephalon",
     };
+
+    // all paradox mons
+    public static final String[] paradox_mons = {
+        "greattusk",
+        "screamtail",
+        "brutebonnet",
+        "fluttermane",
+        "slitherwing",
+        "sandyshocks",
+        "roaringmoon",
+        "walkingwake",
+        "gougingfire",
+        "ragingbolt",
+        "irontreads",
+        "ironbundle",
+        "ironhands",
+        "ironjugulis",
+        "ironmoth",
+        "ironthorns",
+        "ironvaliant",
+        "ironleaves",
+        "ironboulder",
+        "ironcrown",
+        "koraidon",
+        "miraidon",
+    };
 }
