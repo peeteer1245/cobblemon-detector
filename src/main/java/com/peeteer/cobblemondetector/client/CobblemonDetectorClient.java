@@ -5,7 +5,6 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -19,9 +18,12 @@ import com.peeteer.cobblemondetector.client.config.CobblemonDetectorConfig;
 import com.peeteer.cobblemondetector.client.config.ConfigBuilder;
 
 public class CobblemonDetectorClient implements ClientModInitializer {
-    public ArrayList<UUID> cobblemonCache = new ArrayList<>();
     public static final String MOD_ID = "pokefinder";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+
+    // cobblemonCache used to prevent duplicate messages after a pokemon is spawned
+    // when a player recalls and redeploys a pokemon it get a new ID though :/
+    public ArrayList<UUID> cobblemonCache = new ArrayList<>();
     public CobblemonDetectorConfig config = ConfigBuilder.make();
     public String[] allowList = config.getCombinedAllowlist();
 
