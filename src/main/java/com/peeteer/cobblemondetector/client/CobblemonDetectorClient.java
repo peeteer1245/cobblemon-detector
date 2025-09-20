@@ -54,7 +54,10 @@ public class CobblemonDetectorClient implements ClientModInitializer {
                 for (String allowedPokemon : this.allowList) {
                     if (
                         allowedPokemon.equals(pokemonEntity.getName().getString().toLowerCase())
-                        || pokemonEntity.getPokemon().getShiny()
+                        || (
+                            pokemonEntity.getPokemon().getShiny()
+                            && config.broadcastAllShinies
+                        )
                     ) {
                         int x = (int) entity.getX();
                         int y = (int) entity.getY();
@@ -63,7 +66,6 @@ public class CobblemonDetectorClient implements ClientModInitializer {
                         Text shinyText = Text.literal("");
                         if (
                             pokemonEntity.getPokemon().getShiny()
-                            && config.broadcastAllShinies
                         ) {
                             shinyText = Text.literal("Shiny ");
                         }
