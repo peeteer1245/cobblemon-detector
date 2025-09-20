@@ -64,9 +64,7 @@ public class CobblemonDetectorClient implements ClientModInitializer {
                         int z = (int) entity.getZ();
 
                         Text shinyText = Text.literal("");
-                        if (
-                            pokemonEntity.getPokemon().getShiny()
-                        ) {
+                        if (pokemonEntity.getPokemon().getShiny()) {
                             shinyText = Text.literal("Shiny ");
                         }
 

@@ -181,18 +181,28 @@ for ability in pokemondata["ultra_beasts"]:
 # [:-1] removes last  char
 pokemon_list_file_contents = ""
 pokemon_list_file_contents += POKEMON_LIST_FILE_HEADER[1:]
+
+# Legendaries
 pokemon_list_file_contents += POKEMON_LIST_LEGENDARY_HEADER
 pokemon_list_file_contents += legendaries_text[:-1]
 pokemon_list_file_contents += POKEMON_LIST_LEGENDARY_FOOTER
+
+# Mythics
 pokemon_list_file_contents += POKEMON_LIST_MYTHIC_HEADER
 pokemon_list_file_contents += mythics_text[:-1]
 pokemon_list_file_contents += POKEMON_LIST_MYTHIC_FOOTER
+
+# Starters
 pokemon_list_file_contents += POKEMON_LIST_STARTER_HEADER
 pokemon_list_file_contents += starters_text[:-1]
 pokemon_list_file_contents += POKEMON_LIST_STARTER_FOOTER
+
+# Babies
 pokemon_list_file_contents += POKEMON_LIST_BABIES_HEADER
 pokemon_list_file_contents += babies_text[:-1]
 pokemon_list_file_contents += POKEMON_LIST_BABIES_FOOTER
+
+# Ultrabeasts
 pokemon_list_file_contents += POKEMON_LIST_BEASTS_HEADER
 pokemon_list_file_contents += beasts_text[:-1]
 pokemon_list_file_contents += POKEMON_LIST_BEASTS_FOOTER
