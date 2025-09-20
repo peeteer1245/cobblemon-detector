@@ -14,6 +14,7 @@ import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.peeteer.cobblemondetector.client.config.CobblemonDetectorConfig;
 import com.peeteer.cobblemondetector.client.config.ConfigBuilder;
 
@@ -48,25 +49,32 @@ public class CobblemonDetectorClient implements ClientModInitializer {
                     continue;
                 }
                 cobblemonCache.add(entity.getUuid());
-
-                // using PokemonEntity is pointless since the
-                // attributes of Pokemon are server-only
-                // so isPlayerOwned() returns its default-value (false)
-                // PokemonEntity pokemonEntity = (PokemonEntity) entity;
-
+                
+                PokemonEntity pokemonEntity = (PokemonEntity) entity;
                 for (String allowedPokemon : this.allowList) {
-                    if (allowedPokemon.equals(entity.getName().getString().toLowerCase())) {
+                    if (
+                        allowedPokemon.equals(pokemonEntity.getName().getString().toLowerCase())
+                        || pokemonEntity.getPokemon().getShiny()
+                    ) {
                         int x = (int) entity.getX();
                         int y = (int) entity.getY();
                         int z = (int) entity.getZ();
 
+                        Text shinyText = Text.literal("");
+                        if (
+                            pokemonEntity.getPokemon().getShiny()
+                            && config.broadcastAllShinies
+                        ) {
+                            shinyText = Text.literal("Shiny ");
+                        }
+
                         Text message = Text.literal("Found ")
+                            .append(shinyText)
                             .append(entity.getName())
                             .append(Text.literal(" at " + "X: " + x + " Y: " + y + " Z: " + z));
                         player.sendMessage(message);
 
                         this.playSoundNotification(player);
-
                         break;
                     }
                 }

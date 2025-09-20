@@ -12,6 +12,7 @@ public class CobblemonDetectorConfig {
     public boolean broadcastAllStarter = false;
     public boolean broadcastAllBabies = false;
     public boolean broadcastAllUltraBeasts = false;
+    public boolean broadcastAllShinies = true;
     public String[] broadcastAllowlist = {"Mew", "Mewtwo"};
 
     public String[] getCombinedAllowlist(){
