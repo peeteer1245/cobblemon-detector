@@ -212,7 +212,7 @@ for ability in pokemondata["ultra_beasts"]:
 paradox_text = ""
 for ability in pokemondata["paradox_mon"]:
     for pokemon in ability["pokemonabilities"]:
-        name = pokemon["pokemon"]["name"].replace("-", "")
+        name = pokemon["pokemon"]["name"].replace("-", " ")
         # miraidon and koraidon have needless name variants
         if "build" in name or "mode" in name:
             continue
