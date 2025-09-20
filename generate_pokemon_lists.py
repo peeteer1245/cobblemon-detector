@@ -150,6 +150,11 @@ for ability in starter_abilities:
     starter_ability_id = ability["id"]
     for pokemon in ability["pokemonabilities"]:
         pokemon = pokemon["pokemon"]
+        name = pokemon["name"]
+
+        # cobblemons never have these suffixes in their name
+        if "-gmax" in name or "-hisui" in name:
+            continue
 
         is_starter = True
         for _ability in pokemon["pokemonabilities"]:

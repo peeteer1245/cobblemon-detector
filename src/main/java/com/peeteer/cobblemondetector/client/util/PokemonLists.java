@@ -139,9 +139,6 @@ public class PokemonLists {
         "sprigatito",
         "floragato",
         "meowscarada",
-        "venusaur-gmax",
-        "rillaboom-gmax",
-        "decidueye-hisui",
         "squirtle",
         "wartortle",
         "blastoise",
@@ -169,9 +166,6 @@ public class PokemonLists {
         "quaxly",
         "quaxwell",
         "quaquaval",
-        "blastoise-gmax",
-        "inteleon-gmax",
-        "samurott-hisui",
         "charmander",
         "charmeleon",
         "charizard",
@@ -199,9 +193,6 @@ public class PokemonLists {
         "fuecoco",
         "crocalor",
         "skeledirge",
-        "charizard-gmax",
-        "cinderace-gmax",
-        "typhlosion-hisui",
     };
 
     // all baby pokemon without their evolutions
